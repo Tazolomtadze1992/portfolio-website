@@ -60,7 +60,7 @@ export default function Page() {
           <div className="grid grid-cols-1 gap-y-16 md:grid-cols-12 md:gap-x-8">
             <div className="h-full md:col-span-6">
               <CardContent className="flex h-full flex-col gap-4 px-0">
-                <div className="aspect-[16/9] w-full rounded-lg border border-border/70 bg-muted/30" />
+                <div className="media-surface aspect-[16/9] w-full rounded-lg border border-border/70 bg-muted/30" />
                 <div className="space-y-1.5">
                   <CardTitle className="text-lg">Credo CRM</CardTitle>
                   <CardDescription className="leading-relaxed">
@@ -72,22 +72,23 @@ export default function Page() {
             </div>
 
             <div className="h-full md:col-span-6 md:col-start-7">
-              <CardContent className="flex h-full flex-col gap-4 px-0">
-                <div className="aspect-[16/9] w-full rounded-lg border border-border/70 bg-muted/30" />
-                <div className="space-y-1.5">
-                  <CardTitle className="text-lg">Superstore Redesign</CardTitle>
-                  <CardDescription className="leading-relaxed">
-                    Desktop-first e-commerce redesign focused on improving
-                    clarity, friendliness, and browsing experience for Georgian
-                    users.
-                  </CardDescription>
-                </div>
-              </CardContent>
+              <a href="/cadence" className="block h-full">
+                <CardContent className="flex h-full flex-col gap-4 px-0">
+                  <div className="media-surface aspect-[16/9] w-full rounded-lg border border-border/70 bg-muted/30" />
+                  <div className="space-y-1.5">
+                    <CardTitle className="text-lg">Cadence</CardTitle>
+                    <CardDescription className="leading-relaxed">
+                      Command-driven productivity system designed for fast task
+                      creation and scheduling.
+                    </CardDescription>
+                  </div>
+                </CardContent>
+              </a>
             </div>
 
             <div className="h-full md:col-span-6">
               <CardContent className="flex h-full flex-col gap-4 px-0">
-                <div className="aspect-[16/9] w-full rounded-lg border border-border/70 bg-muted/30" />
+                <div className="media-surface aspect-[16/9] w-full rounded-lg border border-border/70 bg-muted/30" />
                 <div className="space-y-1.5">
                   <CardTitle className="text-lg">Komireader</CardTitle>
                   <CardDescription className="leading-relaxed">
@@ -100,7 +101,7 @@ export default function Page() {
 
             <div className="h-full md:col-span-6 md:col-start-7">
               <CardContent className="flex h-full flex-col gap-4 px-0">
-                <div className="aspect-[16/9] w-full rounded-lg border border-border/70 bg-muted/30" />
+                <div className="media-surface aspect-[16/9] w-full rounded-lg border border-border/70 bg-muted/30" />
                 <div className="space-y-1.5">
                   <CardTitle className="text-lg">Social Good Platform</CardTitle>
                   <CardDescription className="leading-relaxed">
