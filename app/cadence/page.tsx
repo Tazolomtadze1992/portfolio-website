@@ -4,6 +4,7 @@ import { SiteContainer } from "@/components/layout/site-container"
 import { CadenceLiveDemoButton } from "@/components/cadence-live-demo-button"
 import { CaseStudySidebarNav } from "@/components/case-study-sidebar-nav"
 import { Carousel, CarouselContent, CarouselDots, CarouselItem } from "@/components/ui/carousel"
+import { TaskCaptureAnimation } from "@/components/cadence/task-capture-animation"
 
 export default function CadenceCaseStudyPage() {
   return (
@@ -100,44 +101,58 @@ export default function CadenceCaseStudyPage() {
               id="interaction-model"
               className="grid w-full grid-cols-1 md:grid-cols-8 md:gap-x-8"
             >
-              <div className="md:col-span-8">
+              <div className="md:col-span-6">
                 <h2 className="text-lg font-medium">Interaction model</h2>
                 <p className="mt-2 text-base text-muted-foreground">
-                  Tasks live in a structured system while canvas mode supports spatial thinking, allowing users to move between planning and exploration in one workspace.
+                  Cadence combines structured task planning with a flexible canvas for visual thinking, allowing users to move between planning and exploration in one workspace.
                 </p>
               </div>
               <div className="md:col-span-8 mt-8">
-                <div className="media-surface aspect-video w-full bg-muted" />
+                <div className="media-surface overflow-hidden">
+                  <Image
+                    src="/cadence/placeholder.png"
+                    alt="Cadence interaction model demonstration"
+                    width={1200}
+                    height={675}
+                    className="h-auto w-full"
+                  />
+                </div>
               </div>
             </section>
 
             {/* 5. WORKFLOWS */}
             <section id="workflows" className="space-y-24">
-              {/* Task creation flow */}
-              <div className="grid w-full grid-cols-1 md:grid-cols-8 md:gap-x-8 md:items-center">
-                <div className="md:col-span-3">
-                  <p className="text-sm text-muted-foreground">Workflow</p>
-                  <h2 className="text-lg font-medium">Task creation flow</h2>
+              <div className="grid w-full grid-cols-1 md:grid-cols-8 md:gap-x-8">
+                <div className="md:col-span-6">
+                  <h2 className="text-lg font-medium">Workflows</h2>
                   <p className="mt-2 text-base text-muted-foreground">
-                    Task creation focuses on quick capture so ideas can turn into tasks without interrupting momentum.
+                    Cadence focuses on workflows that keep planning fast and flexible, reducing friction between capturing an idea, organizing it, and shaping a plan.
                   </p>
-                </div>
-                <div className="md:col-start-4 md:col-span-5 mt-6 md:mt-0">
-                  <div className="media-surface aspect-[4/3] w-full bg-muted" />
                 </div>
               </div>
-
-              {/* Calendar manipulation */}
-              <div className="grid w-full grid-cols-1 md:grid-cols-8 md:gap-x-8 md:items-center">
-                <div className="md:col-span-4 order-2 md:order-1 mt-6 md:mt-0">
-                  <div className="media-surface aspect-[4/3] w-full bg-muted" />
+              <div className="grid w-full grid-cols-1 md:grid-cols-8 md:gap-x-8 md:items-start">
+                <div className="md:col-span-4">
+                  <div className="media-surface relative w-full h-full border border-[#f6f6f6] aspect-[4/3] bg-muted flex items-center justify-center p-8">
+                    <TaskCaptureAnimation className="h-auto w-full max-w-[220px]" />
+                  </div>
+                  <div className="mt-6">
+                    <p className="text-sm text-muted-foreground">Workflow</p>
+                    <h2 className="text-lg font-medium">Task creation flow</h2>
+                    <p className="mt-2 text-base text-muted-foreground">
+                      Task creation focuses on quick capture so ideas can turn into tasks without interrupting momentum.
+                    </p>
+                  </div>
                 </div>
-                <div className="md:col-start-5 md:col-span-4 order-1 md:order-2">
-                  <p className="text-sm text-muted-foreground">Workflow</p>
-                  <h2 className="text-lg font-medium">Calendar manipulation</h2>
-                  <p className="mt-2 text-base text-muted-foreground">
-                    Tasks can be dragged, resized, and repositioned to shape plans directly on the timeline.
-                  </p>
+
+                <div className="md:col-span-4 mt-12 md:mt-0">
+                  <div className="media-surface border border-[#f6f6f6] aspect-[4/3] w-full bg-muted" />
+                  <div className="mt-6">
+                    <p className="text-sm text-muted-foreground">Workflow</p>
+                    <h2 className="text-lg font-medium">Calendar manipulation</h2>
+                    <p className="mt-2 text-base text-muted-foreground">
+                      Tasks can be dragged, resized, and repositioned to shape plans directly on the timeline.
+                    </p>
+                  </div>
                 </div>
               </div>
 
