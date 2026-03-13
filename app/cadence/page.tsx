@@ -12,7 +12,7 @@ export default function CadenceCaseStudyPage() {
         <div className="grid w-full grid-cols-1 md:grid-cols-12 md:gap-x-8">
           <CaseStudySidebarNav
             items={[
-              { id: "overview", label: "Overview" },
+              { id: "intro", label: "Intro" },
               { id: "opportunity", label: "Opportunity" },
               { id: "interaction-model", label: "Interaction Model" },
               { id: "workflows", label: "Workflows" },
@@ -27,20 +27,33 @@ export default function CadenceCaseStudyPage() {
             <section className="space-y-8">
               <div className="grid w-full grid-cols-1 md:grid-cols-8 md:gap-x-8">
                 <div className="md:col-span-4">
-                  <h1 className="text-2xl font-medium tracking-tight">Cadence</h1>
-                  <p className="mt-3 text-base text-muted-foreground">
-                    Cadence is a productivity workspace that combines task planning with a flexible canvas for visual thinking.
-                  </p>
+                  <h1 className="text-2xl font-medium tracking-tight">
+                    <span className="text-foreground">Cadence</span>
+                    <span className="text-muted-foreground">
+                      {" "}
+                      — Planning and visual thinking in one workspace
+                    </span>
+                  </h1>
                   <CadenceLiveDemoButton />
                 </div>
-                <div className="mt-6 md:mt-0 md:col-start-7 md:col-span-2 text-sm text-muted-foreground">
-                  <p className="whitespace-nowrap">Role: Product Designer</p>
-                  <p>Year: 2025</p>
-                  <p>Platform: Web</p>
+                <div className="mt-6 md:mt-0 md:col-start-5 md:col-span-4 text-sm text-muted-foreground">
+                  <p className="text-base text-muted-foreground">
+                    Cadence began as a personal project to explore product design and early design-engineering workflows. It combines task planning with a flexible canvas for visual thinking in one workspace.
+                  </p>
+                  <div className="mt-6 grid grid-cols-2 gap-x-8 gap-y-4 text-sm">
+                    <div>
+                      <p className="text-muted-foreground">Role</p>
+                      <p className="mt-1 text-foreground whitespace-nowrap">Product Designer</p>
+                    </div>
+                    <div>
+                      <p className="text-muted-foreground">Year</p>
+                      <p className="mt-1 text-foreground">2025</p>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className="mt-4">
-                <div className="media-surface overflow-hidden rounded-lg">
+                <div className="media-surface overflow-hidden">
                   <Image
                     src="/cadence/hero-temp.png"
                     alt="Cadence calendar view showing scheduled tasks on a weekly timeline"
@@ -52,47 +65,32 @@ export default function CadenceCaseStudyPage() {
                 </div>
               </div>
             </section>
-            {/* 2. OVERVIEW */}
-            <section
-              id="overview"
-              className="grid w-full grid-cols-1 md:grid-cols-8 md:gap-x-8"
-            >
-              <h2 className="md:col-span-6 text-lg font-medium">Overview</h2>
-              <p className="md:col-span-5 mt-2 text-base text-muted-foreground">
-                Cadence began as a personal project to explore product design and early
-                design‑engineering workflows.
-              </p>
-              <div className="md:col-span-8 mt-12 mb-16">
-                <p className="mb-4 text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
-                  System model
-                </p>
-                <Image
-                  src="/cadence/diagram.svg"
-                  alt="Cadence system model showing tasks, calendar and canvas working together"
-                  width={1200}
-                  height={800}
-                  className="h-auto w-full"
-                />
-              </div>
-            </section>
 
             {/* 3. OPPORTUNITY */}
             <section
               id="opportunity"
               className="grid w-full grid-cols-1 md:grid-cols-8 md:gap-x-8"
             >
-              <div className="md:col-span-4">
-                <p className="text-sm text-muted-foreground">Opportunity</p>
-                <h2 className="text-lg font-medium">Problem</h2>
+              <div className="md:col-span-6">
+                <h2 className="text-lg font-medium">Opportunity</h2>
                 <p className="mt-2 text-base text-muted-foreground">
-                  Most productivity tools support either structured task management or freeform thinking, forcing users to switch tools and break flow.
+                  Most productivity tools separate structured task management from freeform thinking. Cadence explores a workspace where planning and visual thinking can exist in the same system.
                 </p>
               </div>
-              <div className="md:col-start-5 md:col-span-4">
-                <p className="text-sm text-muted-foreground">Opportunity</p>
-                <h2 className="text-lg font-medium">Goal</h2>
-                <p className="mt-2 text-base text-muted-foreground">
-                  Cadence explores a workspace where planning and visual thinking can exist in the same system.
+
+              <div className="md:col-span-8 mt-10">
+                <div className="media-surface overflow-hidden">
+                  <Image
+                    src="/cadence/diagram.svg"
+                    alt="Cadence system model showing tasks, calendar and canvas working together"
+                    width={1200}
+                    height={800}
+                    className="h-auto w-full"
+                  />
+                </div>
+
+                <p className="mt-2 text-center text-xs text-muted-foreground/50">
+                  System model
                 </p>
               </div>
             </section>
@@ -109,7 +107,7 @@ export default function CadenceCaseStudyPage() {
                 </p>
               </div>
               <div className="md:col-span-8 mt-8">
-                <div className="media-surface aspect-video w-full rounded-lg bg-muted" />
+                <div className="media-surface aspect-video w-full bg-muted" />
               </div>
             </section>
 
@@ -125,14 +123,14 @@ export default function CadenceCaseStudyPage() {
                   </p>
                 </div>
                 <div className="md:col-start-4 md:col-span-5 mt-6 md:mt-0">
-                  <div className="media-surface aspect-[4/3] w-full rounded-lg bg-muted" />
+                  <div className="media-surface aspect-[4/3] w-full bg-muted" />
                 </div>
               </div>
 
               {/* Calendar manipulation */}
               <div className="grid w-full grid-cols-1 md:grid-cols-8 md:gap-x-8 md:items-center">
                 <div className="md:col-span-4 order-2 md:order-1 mt-6 md:mt-0">
-                  <div className="media-surface aspect-[4/3] w-full rounded-lg bg-muted" />
+                  <div className="media-surface aspect-[4/3] w-full bg-muted" />
                 </div>
                 <div className="md:col-start-5 md:col-span-4 order-1 md:order-2">
                   <p className="text-sm text-muted-foreground">Workflow</p>
@@ -156,13 +154,13 @@ export default function CadenceCaseStudyPage() {
                   <Carousel className="w-full">
                     <CarouselContent>
                       <CarouselItem className="basis-[85%]">
-                        <div className="media-surface aspect-[4/3] w-full rounded-lg bg-muted" />
+                        <div className="media-surface aspect-[4/3] w-full bg-muted" />
                       </CarouselItem>
                       <CarouselItem className="basis-[85%]">
-                        <div className="media-surface aspect-[4/3] w-full rounded-lg bg-muted" />
+                        <div className="media-surface aspect-[4/3] w-full bg-muted" />
                       </CarouselItem>
                       <CarouselItem className="basis-[85%]">
-                        <div className="media-surface aspect-[4/3] w-full rounded-lg bg-muted" />
+                        <div className="media-surface aspect-[4/3] w-full bg-muted" />
                       </CarouselItem>
                     </CarouselContent>
                     <CarouselDots />
@@ -183,7 +181,7 @@ export default function CadenceCaseStudyPage() {
                 </p>
               </div>
               <div className="md:col-span-8 mt-8">
-                <div className="media-surface aspect-[3/1] w-full rounded-lg bg-muted" />
+                <div className="media-surface aspect-[3/1] w-full bg-muted" />
               </div>
             </section>
 
@@ -199,7 +197,7 @@ export default function CadenceCaseStudyPage() {
                 The interface focuses on clarity through hierarchy, spacing, and restrained visual styling.
               </p>
               <div className="md:col-span-8 mt-6">
-                <div className="media-surface aspect-[21/9] w-full rounded-lg bg-muted" />
+                <div className="media-surface aspect-[21/9] w-full bg-muted" />
               </div>
             </section>
 
