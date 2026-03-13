@@ -90,7 +90,7 @@ export function TaskCaptureAnimation({ className, ...props }: TaskCaptureAnimati
                 transition: {
                   duration: 0.24,
                   ease: easeOut,
-                  delay: 0.2,
+                  delay: 0.3,
                 },
               },
             }}
@@ -117,7 +117,7 @@ export function TaskCaptureAnimation({ className, ...props }: TaskCaptureAnimati
                   transition: {
                     duration: 0.2,
                     ease: easeOut,
-                    delay: 0.27,
+                    delay: 0.54,
                   },
                 },
               }}
@@ -140,7 +140,7 @@ export function TaskCaptureAnimation({ className, ...props }: TaskCaptureAnimati
                   transition: {
                     duration: 0.2,
                     ease: easeOut,
-                    delay: 0.33,
+                    delay: 0.60,
                   },
                 },
               }}
@@ -163,7 +163,7 @@ export function TaskCaptureAnimation({ className, ...props }: TaskCaptureAnimati
                   transition: {
                     duration: 0.2,
                     ease: easeOut,
-                    delay: 0.39,
+                    delay: 0.66,
                   },
                 },
               }}
@@ -189,7 +189,7 @@ export function TaskCaptureAnimation({ className, ...props }: TaskCaptureAnimati
                   transition: {
                     duration: 0.2,
                     ease: easeOut,
-                    delay: 0.45,
+                    delay: 0.72,
                   },
                 },
               }}
@@ -212,7 +212,7 @@ export function TaskCaptureAnimation({ className, ...props }: TaskCaptureAnimati
                   transition: {
                     duration: 0.2,
                     ease: easeOut,
-                    delay: 0.51,
+                    delay: 0.78,
                   },
                 },
               }}
@@ -235,7 +235,7 @@ export function TaskCaptureAnimation({ className, ...props }: TaskCaptureAnimati
                   transition: {
                     duration: 0.2,
                     ease: easeOut,
-                    delay: 0.57,
+                    delay: 0.84,
                   },
                 },
               }}
@@ -261,7 +261,7 @@ export function TaskCaptureAnimation({ className, ...props }: TaskCaptureAnimati
                   transition: {
                     duration: 0.2,
                     ease: easeOut,
-                    delay: 0.63,
+                    delay: 0.90,
                   },
                 },
               }}
@@ -284,7 +284,7 @@ export function TaskCaptureAnimation({ className, ...props }: TaskCaptureAnimati
                   transition: {
                     duration: 0.2,
                     ease: easeOut,
-                    delay: 0.63,
+                    delay: 0.96,
                   },
                 },
               }}
@@ -307,7 +307,7 @@ export function TaskCaptureAnimation({ className, ...props }: TaskCaptureAnimati
                   transition: {
                     duration: 0.2,
                     ease: easeOut,
-                    delay: 0.63,
+                    delay: 1.02,
                   },
                 },
               }}
@@ -326,13 +326,13 @@ export function TaskCaptureAnimation({ className, ...props }: TaskCaptureAnimati
               y: 0,
               transition: {
                 opacity: {
-                  duration: 0.12,
+                  duration: 0.25,
                   delay: 0.9,
                 },
                 scale: {
                   type: "spring",
-                  visualDuration: 0.55,
-                  bounce: 0.35,
+                  visualDuration: 0.3,
+                  bounce: 0.5,
                   delay: 0.9,
                 },
               },
