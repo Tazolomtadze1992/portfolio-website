@@ -1,11 +1,11 @@
 "use client"
 
 import * as React from "react"
-import { motion, useInView } from "motion/react"
+import { motion, useInView, type SVGMotionProps } from "motion/react"
 import { Button } from "@/components/ui/button"
 import { RotateCcw } from "lucide-react"
 
-type TaskCaptureAnimationProps = React.ComponentPropsWithoutRef<"svg">
+type TaskCaptureAnimationProps = SVGMotionProps<SVGSVGElement>
 
 const easeOut = [0.22, 1, 0.36, 1] as const
 
