@@ -1,7 +1,9 @@
 "use client"
 
 import * as React from "react"
-import { motion } from "motion/react"
+import { motion, useInView } from "motion/react"
+import { Button } from "@/components/ui/button"
+import { RotateCcw } from "lucide-react"
 
 type TaskCaptureAnimationProps = React.ComponentPropsWithoutRef<"svg">
 
@@ -11,8 +13,18 @@ export function TaskCaptureAnimation({ className, ...props }: TaskCaptureAnimati
   const [isPlaying, setIsPlaying] = React.useState(false)
   const [animationKey, setAnimationKey] = React.useState(0)
 
+  const wrapperRef = React.useRef<HTMLDivElement | null>(null)
+  const isInView = useInView(wrapperRef, { once: true, amount: 0.55 })
+
+  React.useEffect(() => {
+    if (isInView) {
+      setAnimationKey((prev) => prev + 1)
+      setIsPlaying(true)
+    }
+  }, [isInView])
+
   return (
-    <div className="relative inline-flex items-center justify-center">
+    <div ref={wrapperRef} className="relative inline-flex items-center justify-center">
       <motion.svg
         key={animationKey}
         width="128"
@@ -449,16 +461,19 @@ export function TaskCaptureAnimation({ className, ...props }: TaskCaptureAnimati
         </defs>
       </motion.svg>
 
-      <button
+      <Button
         type="button"
+        variant="secondary"
+        size="xs"
+        aria-label="Replay animation"
         onClick={() => {
-          setAnimationKey(prev => prev + 1)
+          setAnimationKey((prev) => prev + 1)
           setIsPlaying(true)
         }}
-        className="absolute bottom-40 left-1/2 -translate-x-1/2 rounded border bg-white/90 px-3 py-1 text-xs shadow-sm backdrop-blur"
+        className="absolute left-56 bottom-45 h-6 w-6 rounded-full border border-black/5 bg-white/80 shadow-sm backdrop-blur-sm opacity-0 transition-opacity duration-200 group-hover:opacity-100"
       >
-        Play
-      </button>
+        <RotateCcw className="h-4 w-4" strokeWidth={1.75} />
+      </Button>
     </div>
   )
 }

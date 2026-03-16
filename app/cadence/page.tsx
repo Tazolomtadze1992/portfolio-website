@@ -5,6 +5,7 @@ import { CadenceLiveDemoButton } from "@/components/cadence-live-demo-button"
 import { CaseStudySidebarNav } from "@/components/case-study-sidebar-nav"
 import { Carousel, CarouselContent, CarouselDots, CarouselItem } from "@/components/ui/carousel"
 import { TaskCaptureAnimation } from "@/components/cadence/task-capture-animation"
+import { BoardAttachAnimation } from "@/components/cadence/board-attach-animation"
 
 export default function CadenceCaseStudyPage() {
   return (
@@ -132,7 +133,7 @@ export default function CadenceCaseStudyPage() {
               </div>
               <div className="grid w-full grid-cols-1 md:grid-cols-8 md:gap-x-8 md:items-start">
                 <div className="md:col-span-4">
-                  <div className="media-surface relative w-full h-full border border-[#f6f6f6] aspect-[4/3] bg-muted flex items-center justify-center p-8">
+                  <div className="group media-surface relative w-full h-full aspect-[4/3] bg-[#F8F8F8] flex items-center justify-center p-8">
                     <TaskCaptureAnimation className="h-auto w-full max-w-[220px]" />
                   </div>
                   <div className="mt-6">
@@ -145,7 +146,9 @@ export default function CadenceCaseStudyPage() {
                 </div>
 
                 <div className="md:col-span-4 mt-12 md:mt-0">
-                  <div className="media-surface border border-[#f6f6f6] aspect-[4/3] w-full bg-muted" />
+                  <div className="group media-surface relative aspect-[4/3] w-full bg-[#F8F8F8] flex items-center justify-center p-8">
+                    <BoardAttachAnimation className="h-auto w-full max-w-[260px]" />
+                  </div>
                   <div className="mt-6">
                     <p className="text-sm text-muted-foreground">Workflow</p>
                     <h2 className="text-lg font-medium">Calendar manipulation</h2>
@@ -169,13 +172,13 @@ export default function CadenceCaseStudyPage() {
                   <Carousel className="w-full">
                     <CarouselContent>
                       <CarouselItem className="basis-[85%]">
-                        <div className="media-surface aspect-[4/3] w-full bg-muted" />
+                        <div className="media-surface aspect-[4/3] w-full bg-[#F8F8F8]" />
                       </CarouselItem>
                       <CarouselItem className="basis-[85%]">
-                        <div className="media-surface aspect-[4/3] w-full bg-muted" />
+                        <div className="media-surface aspect-[4/3] w-full bg-[#F8F8F8]" />
                       </CarouselItem>
                       <CarouselItem className="basis-[85%]">
-                        <div className="media-surface aspect-[4/3] w-full bg-muted" />
+                        <div className="media-surface aspect-[4/3] w-full bg-[#F8F8F8]" />
                       </CarouselItem>
                     </CarouselContent>
                     <CarouselDots />
@@ -196,7 +199,19 @@ export default function CadenceCaseStudyPage() {
                 </p>
               </div>
               <div className="md:col-span-8 mt-8">
-                <div className="media-surface aspect-[3/1] w-full bg-muted" />
+                <div className="media-surface overflow-hidden bg-[#F8F8F8] px-12 py-10">
+                  <Image
+                    src="/cadence/how-it-works.svg"
+                    alt="System logic diagram showing how tasks, schedules, and canvas elements connect within Cadence"
+                    width={497}
+                    height={401}
+                    className="h-auto w-full"
+                  />
+                </div>
+
+                <p className="mt-2 text-center text-xs text-muted-foreground/50">
+                  System logic
+                </p>
               </div>
             </section>
 
@@ -212,7 +227,7 @@ export default function CadenceCaseStudyPage() {
                 The interface focuses on clarity through hierarchy, spacing, and restrained visual styling.
               </p>
               <div className="md:col-span-8 mt-6">
-                <div className="media-surface aspect-[21/9] w-full bg-muted" />
+                <div className="media-surface aspect-[21/9] w-full bg-[#F8F8F8]" />
               </div>
             </section>
 
