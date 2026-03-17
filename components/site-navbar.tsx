@@ -1,8 +1,9 @@
 "use client"
 
 import * as React from "react"
+import Image from "next/image"
 import { MenuIcon } from "lucide-react"
-import { motion } from "motion/react"
+import { AnimatePresence, motion } from "motion/react"
 
 import { cn } from "@/lib/utils"
 import { Button, buttonVariants } from "@/components/ui/button"
@@ -24,9 +25,78 @@ const navItems = [
   { label: "About", href: "/about" },
 ] as const
 
+const projects = [
+  { name: "Bentley", href: "/work/bentley" },
+  { name: "Docufai", href: "/work/docufai" },
+  { name: "Ripcord", href: "/work/ripcord" },
+  { name: "Karhoo", href: "/work/karhoo" },
+  { name: "Reuters", href: "/work/reuters" },
+] as const
+
 export function SiteNavbar() {
   const [scrolled, setScrolled] = React.useState(false)
   const [ctaState, setCtaState] = React.useState<"collapsed" | "expanded">("collapsed")
+  const [isWorkMenuOpen, setIsWorkMenuOpen] = React.useState(false)
+
+  const closeTimeoutRef = React.useRef<number | null>(null)
+
+  const clearWorkMenuCloseTimeout = React.useCallback(() => {
+    if (closeTimeoutRef.current !== null) {
+      window.clearTimeout(closeTimeoutRef.current)
+      closeTimeoutRef.current = null
+    }
+  }, [])
+
+  const openWorkMenu = React.useCallback(() => {
+    clearWorkMenuCloseTimeout()
+    setIsWorkMenuOpen(true)
+  }, [clearWorkMenuCloseTimeout])
+
+  const closeWorkMenuImmediately = React.useCallback(() => {
+    clearWorkMenuCloseTimeout()
+    setIsWorkMenuOpen(false)
+  }, [clearWorkMenuCloseTimeout])
+
+  const scheduleWorkMenuClose = React.useCallback(() => {
+    clearWorkMenuCloseTimeout()
+    closeTimeoutRef.current = window.setTimeout(() => {
+      setIsWorkMenuOpen(false)
+      closeTimeoutRef.current = null
+    }, 120)
+  }, [clearWorkMenuCloseTimeout])
+
+  const handleWorkMenuBlur = React.useCallback(
+    (event: React.FocusEvent<HTMLDivElement>) => {
+      if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+        scheduleWorkMenuClose()
+      }
+    },
+    [scheduleWorkMenuClose]
+  )
+
+  React.useEffect(() => {
+    return () => {
+      if (closeTimeoutRef.current !== null) {
+        window.clearTimeout(closeTimeoutRef.current)
+      }
+    }
+  }, [])
+
+  React.useEffect(() => {
+    if (!isWorkMenuOpen) return
+
+    const handlePointerDown = (event: PointerEvent) => {
+      const target = event.target as Node | null
+      const menuRoot = document.querySelector("[data-work-menu-root]")
+
+      if (menuRoot && target && !menuRoot.contains(target)) {
+        closeWorkMenuImmediately()
+      }
+    }
+
+    window.addEventListener("pointerdown", handlePointerDown)
+    return () => window.removeEventListener("pointerdown", handlePointerDown)
+  }, [isWorkMenuOpen, closeWorkMenuImmediately])
 
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
@@ -44,38 +114,134 @@ export function SiteNavbar() {
           : "bg-transparent"
       )}
     >
-      <SiteContainer className="grid h-[68px] grid-cols-12 items-center gap-x-8">
-        <motion.a
-          href="/"
-          aria-label="Home"
-          className={cn(
-            buttonVariants({ variant: "outline", size: "default" }),
-            "col-span-4 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-border/70 bg-transparent p-0 shadow-none"
-          )}
-          whileHover={{ rotate: 360 }}
-          transition={{
-            duration: 0.15,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-        >
-          <Sun className="h-6 w-6 text-muted-foreground" />
-        </motion.a>
+      <SiteContainer className="mt-6 flex items-center max-w-[1200px] px-12">
 
-        <nav className="hidden md:col-start-7 md:col-span-4 md:flex md:items-center md:justify-start md:gap-3">
-          {navItems.map((item) => (
+        {/* ── LEFT ── */}
+        <div className="flex w-[120px] items-center justify-start">
+          <motion.a
+            href="/"
+            aria-label="Home"
+            className={cn(
+              buttonVariants({ variant: "outline", size: "default" }),
+              "flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-border/70 bg-transparent p-0 shadow-none"
+            )}
+            whileHover={{ rotate: 360 }}
+            transition={{
+              duration: 0.15,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          >
+            <Sun className="h-6 w-6 text-muted-foreground" />
+          </motion.a>
+        </div>
+
+        {/* ── CENTER — Selected work trigger + dropdown (desktop) ── */}
+        <div className="hidden flex-1 items-center justify-center md:flex">
+          {/* Shared hover zone for trigger + dropdown */}
+          <motion.div
+            data-work-menu-root
+            className="group/menu relative inline-block"
+            initial="rest"
+            animate={isWorkMenuOpen ? "hover" : "rest"}
+            whileHover="hover"
+            onMouseEnter={openWorkMenu}
+            onMouseLeave={scheduleWorkMenuClose}
+            onFocusCapture={openWorkMenu}
+            onBlurCapture={handleWorkMenuBlur}
+          >
+
+            {/* Trigger */}
             <Button
-              key={item.href}
-              variant="link"
-              size="sm"
-              className="px-0 text-sm font-medium text-muted-foreground hover:text-foreground"
-              asChild
+              type="button"
+              variant="outline"
+              aria-haspopup="menu"
+              aria-expanded={isWorkMenuOpen}
+              aria-controls="selected-work-menu"
+              className="inline-flex h-10 items-center gap-2 rounded-full border-border/70 bg-transparent pl-2 pr-4 text-sm font-medium text-foreground shadow-none transition-colors group-hover/menu:bg-[rgba(157,157,158,0.1)] group-focus-within/menu:bg-[rgba(157,157,158,0.1)]"
             >
-              <a href={item.href}>{item.label}</a>
+              <motion.span
+                className="relative inline-flex h-9 w-9 items-center justify-center"
+                variants={{
+                  rest: { rotate: 0 },
+                  hover: { rotate: 720 },
+                }}
+                transition={{
+                  duration: 0.28,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+              >
+                <span className="relative h-6 w-6">
+                  <Image
+                    src="/cadence/default.svg"
+                    alt=""
+                    width={24}
+                    height={24}
+                    className="absolute inset-0 h-full w-full opacity-100 transition-opacity duration-150 ease-out group-hover/menu:opacity-0 group-focus-within/menu:opacity-0"
+                  />
+                  <Image
+                    src="/cadence/colored.svg"
+                    alt=""
+                    width={24}
+                    height={24}
+                    className="absolute inset-0 h-full w-full opacity-0 transition-opacity duration-150 ease-out group-hover/menu:opacity-100 group-focus-within/menu:opacity-100"
+                  />
+                </span>
+              </motion.span>
+              <span className="whitespace-nowrap">Selected work</span>
             </Button>
-          ))}
-        </nav>
 
-        <div className="hidden md:col-span-2 md:flex md:items-center md:justify-end md:gap-2">
+            <AnimatePresence>
+              {isWorkMenuOpen ? (
+                <motion.div
+                  id="selected-work-menu"
+                  role="menu"
+                  className="absolute left-0 top-full z-10 w-full"
+                  initial={{ opacity: 0, y: -10, filter: "blur(4px)" }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                    filter: "blur(0px)",
+                    transition: {
+                      duration: 0.2,
+                      ease: [0.22, 1, 0.36, 1],
+                    },
+                  }}
+                  exit={{
+                    opacity: 0,
+                    y: -6,
+                    filter: "blur(4px)",
+                    transition: {
+                      duration: 0.14,
+                      ease: [0.4, 0, 0.2, 1],
+                    },
+                  }}
+                >
+                  <div className="mt-1 rounded-2xl border border-border/60 bg-background p-2 shadow-lg">
+                    <div className="flex flex-col gap-1">
+                      {projects.map((project) => (
+                        <a
+                          key={project.name}
+                          href={project.href}
+                          role="menuitem"
+                          className="flex items-center gap-3 rounded-xl px-3 py-2 transition-colors hover:bg-muted/60 focus-visible:bg-muted/60 focus-visible:outline-none"
+                        >
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-muted" />
+                          <span className="text-sm font-medium text-foreground">
+                            {project.name}
+                          </span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              ) : null}
+            </AnimatePresence>
+
+          </motion.div>
+        </div>
+
+        {/* ── RIGHT — contact button (desktop) ── */}
+        <div className="hidden w-[120px] items-center justify-end md:flex">
           <motion.a
             href="mailto:hello@tazo.design"
             aria-label="Email Tazo"
@@ -156,7 +322,8 @@ export function SiteNavbar() {
           </motion.a>
         </div>
 
-        <div className="col-span-8 flex items-center justify-end gap-2 md:hidden">
+        {/* ── Mobile fallback ── */}
+        <div className="ml-auto flex items-center gap-2 md:hidden">
           <Button size="icon" variant="outline" asChild>
             <a href="mailto:hello@tazo.design" aria-label="Email Tazo">
               <EnvelopeIcon className="h-12 w-12" />

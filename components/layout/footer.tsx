@@ -13,7 +13,7 @@ const socialLinks = [
 export function Footer() {
   return (
     <footer className="mt-16 w-full sm:mt-24">
-      <SiteContainer>
+      <SiteContainer className="max-w-[1200px] px-12">
         <Separator />
 
         <div className="py-10">

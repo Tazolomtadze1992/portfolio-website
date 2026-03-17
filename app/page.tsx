@@ -5,7 +5,7 @@ import { SiteContainer } from "@/components/layout/site-container"
 export default function Page() {
   return (
     <main className="min-h-svh pt-16 sm:pt-24">
-      <SiteContainer className="scroll-mt-20" id="home">
+      <SiteContainer className="scroll-mt-20 max-w-[1200px] px-12" id="home">
         <section className="grid w-full gap-y-10 text-left md:grid-cols-12 md:gap-x-8 md:items-end">
           <div className="flex max-w-3xl flex-col items-start md:col-span-5">
             <h1 className="text-balance text-2xl font-medium tracking-tight">
@@ -54,7 +54,7 @@ export default function Page() {
 
       <SiteContainer
         id="work"
-        className="mt-16 scroll-mt-20 sm:mt-20"
+        className="mt-16 scroll-mt-20 sm:mt-20 max-w-[1200px] px-12"
       >
         <section>
           <div className="grid grid-cols-1 gap-y-16 md:grid-cols-12 md:gap-x-8">
